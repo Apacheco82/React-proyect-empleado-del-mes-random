@@ -1,12 +1,8 @@
 import React from "react";
 
-
-
-const Empleados = (emp) => {
-
-  const {nombre, apellidos, edad, puesto} = emp
+const Empleados = ({emp}) => {
+  const {nombre, apellidos, edad, puesto} = emp;
   return (
-    <div className="container container-fluid">
       <div className="card-body">
         <h3>Datos del empleado</h3>
         <p>Nombre:{nombre}</p>
@@ -14,7 +10,6 @@ const Empleados = (emp) => {
         <p>Edad:{edad}</p>
         <p>Puesto:{puesto}</p>
       </div>
-    </div>
   );
 };
 

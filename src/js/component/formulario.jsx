@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 
-const initialState = { //se crea aquí el objeto vacío porque solo lo vamos a usar en form
+const initialState = {
+  //se crea aquí el objeto vacío porque solo lo vamos a usar en form
   nombre: "",
   apellidos: "",
   edad: "",
@@ -8,55 +9,30 @@ const initialState = { //se crea aquí el objeto vacío porque solo lo vamos a u
 };
 
 const Formulario = ({handleSubmit}) => {
-  
-  const [empleado, setEmpleado] = useState([initialState]);
+  const [empleado, setEmpleado] = useState(initialState);
 
   const handleChange = (e) => {
-    const inputValue = e.target.value;
-    const inputName = e.target.name;
-    setEmpleado[{...empleado, [inputName]: inputValue}];
-    console.log(empleado)
+    const value = e.target.value //se obtiene el valor del input
+    const name = e.target.name //se obtiene el nombre del campo del input
+    setEmpleado({...empleado, [name]: value}) //se añade el valor al campo de nombre de input haciendo una copia del objeto
   };
 
   const handleData = (e) => {
     e.preventDefault();
+    console.log(empleado)
     handleSubmit(empleado);
     setEmpleado(initialState);
   };
 
   return (
     <>
-      <form className="form" onChange={handleChange} onSubmit={handleData}>
+      <form onChange={handleChange} onSubmit={handleData}>
         <h3>Añade un empleado</h3>
-        <input
-          className="form-control"
-          type="text"
-          name="nombre"
-          value={empleado.nombre}
-          placeholder="Default input"
-        ></input>
-        <input
-          className="form-control"
-          type="text"
-          name="apellido"
-          value={empleado.apellidos}
-          placeholder="Default input"
-        ></input>
-        <input
-          className="form-control"
-          type="text"
-          name="edad"
-          value={empleado.edad}
-          placeholder="Default input"
-        ></input>
-        <input
-          className="form-control"
-          type="text"
-          name="puesto"
-          value={empleado.puesto}
-          placeholder="Default input"
-        ></input>
-        <input type="submit" className="btn btn-success" value="save"></input>
+        <input type="text" name="nombre" value={empleado.nombre}></input>
+        <input type="text" name="apellidos" value={empleado.apellidos}></input>
+        <input type="text" name="edad" value={empleado.edad}></input>
+        <input type="text" name="puesto" value={empleado.puesto}></input>
+        <input type="submit" className="btn btn-success" value="Save"></input>
       </form>
     </>
   );
